@@ -34,7 +34,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import static org.apache.dubbo.common.constants.CommonConstants.DEFAULT_PROTOCOL;
-import static org.apache.dubbo.config.spring.util.PropertySourcesUtils.getSubProperties;
+import static org.apache.dubbo.config.spring.util.PropertySourcesUtils.getPrefixedProperties;
 
 /**
  * Dubbo {@link WebApplicationType#NONE Non-Web Application}
@@ -150,8 +150,8 @@ public class DubboNonWebApplicationEnvironmentPostProcessor
 
 		String restPort = null;
 
-		Map<String, Object> subProperties = getSubProperties(environment,
-				PROTOCOLS_PROPERTY_NAME_PREFIX);
+		Map<String, Object> subProperties = getPrefixedProperties(environment.getPropertySources(),
+				"dubbo.registries.");
 
 		Properties properties = new Properties();
 
